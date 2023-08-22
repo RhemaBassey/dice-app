@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     imageContainer.classList.add("fade-in");
     
     setTimeout(function () {
-      displayedImage.src = 'dice-face' + dieFace + '.png'
+      displayedImage.src = 'images/dice-face' + dieFace + '.png'
     },500); //displayed image changes first, to avoid image jerking (where past image still appears for brief moment after transition)
     setTimeout(function () {
       imageContainer.classList.remove("fade-in");
