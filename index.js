@@ -9,32 +9,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
   button.addEventListener("click", function () {
     imageContainer.innerHTML = "";
-    console.log(dieCount.value);
+    timeout = 500
 
-    // for (var i = 0; i < dieCount.value; i++) {
-    //   dieFace = Math.floor(Math.random() * 6 + 1); //generates random numbers from [1,7), floor removes the decimal part, rounding to a lower number
-    //   var newImage = document.createElement("img");
-    //   newImage.src = "images/dice-face" + dieFace + ".png";
-    //   newImage.alt = "dice " + dieFace;
-    //   imageContainer.appendChild(newImage);
-    // }
 
-    imageContainer.classList.remove("hidden");
+    var dieFaceCount = {'1':"yooooooo",'2':0,'3':0,'4':0,'5':0,'6':0}
+    
+
+    for (var i = 0; i < dieCount.value; i++) {
+      dieFace = Math.floor(Math.random() * 6 + 1); //generates random numbers from [1,7), floor removes the decimal part, rounding to a lower number
+
+
+      var newImage = document.createElement("img");
+      newImage.src = "images/dice-face" + dieFace + ".png";
+      newImage.className = "fade-in dice-img";
+      newImage.alt = "dice " + dieFace;
+      imageContainer.appendChild(newImage);
+    }
+
+    // imageContainer.classList.remove("hidden");
     imageContainer.classList.add("fade-in");
+    setTimeout(function () {
+      imageContainer.innerHTML = "";
+    }, timeout);
 
     setTimeout(function () {
       for (var i = 0; i < dieCount.value; i++) {
         dieFace = Math.floor(Math.random() * 6 + 1); //generates random numbers from [1,7), floor removes the decimal part, rounding to a lower number
+        
+        if(dieFace in dieCount){
+          console.log(dieFace)
+  }
+        
         var newImage = document.createElement("img");
         newImage.src = "images/dice-face" + dieFace + ".png";
+        newImage.className = "dice-img";
         newImage.alt = "dice " + dieFace;
         imageContainer.appendChild(newImage);
       }
-  
+
       // displayedImage.src = "images/dice-face" + dieFace + ".png";
-    }, 500); //displayed image changes first, to avoid image jerking (where past image still appears for brief moment after transition)
+    }, timeout); //displayed image changes first, to avoid image jerking (where past image still appears for brief moment after transition)
     setTimeout(function () {
       imageContainer.classList.remove("fade-in");
-    }, 750); // a bit extra delay
+    }, timeout +250); // a bit extra delay
   });
 });
